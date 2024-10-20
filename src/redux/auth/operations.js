@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://connections-api.goit.global/";
+axios.defaults.baseURL = "/api";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -17,13 +17,12 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkApi) => {
-    console.log(credentials);
     try {
       const { data } = await axios.post("/users/signup", credentials);
-      console.log(data);
       setAuthHeader(data.token);
       return data;
     } catch (error) {
+      console.error("Registration error:", error); // Добавьте эту строку
       return thunkApi.rejectWithValue(error.message);
     }
   }
