@@ -1,0 +1,15 @@
+/* Пример стилей для детей компонента */
+.protected-route {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.protected-route__content {
+    max-width: 1200px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

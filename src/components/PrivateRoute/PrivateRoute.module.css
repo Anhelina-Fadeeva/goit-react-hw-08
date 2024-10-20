@@ -1,0 +1,9 @@
+.private-route__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+    font-size: 1.5rem;
+    color: #666;
+}
