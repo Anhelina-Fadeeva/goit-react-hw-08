@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const Register = lazy(() => import("./pages/RegistrationPage/RegistrationPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
-const Contacts = lazy(() => import("./pages/ContactsPage.jsx"));
+const Contacts = lazy(() => import("./pages/ContactsPage/ContactsPage.jsx"));
 
 export default function App() {
   const dispatch = useDispatch();
