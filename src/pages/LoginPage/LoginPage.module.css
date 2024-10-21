@@ -9,19 +9,17 @@
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #5c4b31;
     margin-bottom: 20px;
 }
 
-.description {
-    font-size: 1.25rem;
-    color: #3d2f21;
-    text-align: center;
-    max-width: 600px;
-    line-height: 1.5;
+.formContainer {
+    width: 100%;
+    max-width: 400px;
     background-color: #f9f6f1;
     padding: 20px;
     border: 1px solid #c4b79e;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

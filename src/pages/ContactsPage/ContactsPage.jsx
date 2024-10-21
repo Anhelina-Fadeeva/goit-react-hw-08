@@ -6,6 +6,7 @@ import ContactList from "../../components/ContactList/ContactList";
 import SearchBox from '../../components/SearchBox/SearchBox';
 import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contacts/operations";
+import styles from './ContactPage.module.css';
 
 export default function ContactPage() {
     const dispatch = useDispatch();
@@ -19,11 +20,11 @@ export default function ContactPage() {
     }, [dispatch, isLoggedIn]);
 
     return (
-        <>
+        <div className={styles.container}>
             <ContactForm />
             <SearchBox />
             <ContactList />
-            {isLoading && <div className="loading">Request in progress...</div>}
-        </>
+            {isLoading && <div className={styles.loading}>Request in progress...</div>}
+        </div>
     );
 }

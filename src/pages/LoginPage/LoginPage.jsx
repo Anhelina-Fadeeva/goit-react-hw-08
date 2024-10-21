@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import LoginForm from "../../components/LoginForm/LoginForm";
+import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
     const handleLoginSubmit = (values) => {
@@ -8,15 +8,10 @@ const LoginPage = () => {
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <LoginForm onSubmit={handleLoginSubmit} />
-        </>
+        </div>
     );
-};
-
-// Можно добавить PropTypes, если вы используете их в своем проекте
-LoginPage.propTypes = {
-    // Здесь можно указать пропсы, если нужно
 };
 
 export default LoginPage;

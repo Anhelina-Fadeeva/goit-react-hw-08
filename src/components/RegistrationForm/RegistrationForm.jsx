@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { useState } from 'react';
 
+// Валидация полей формы
 const validationSchema = Yup.object({
     name: Yup.string()
         .min(3, "Name is too short!")
@@ -26,18 +27,21 @@ export default function RegistrationForm() {
     const dispatch = useDispatch();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-const handleSubmit = async (values, actions) => {
-    console.log("Registration payload:", values);
-    setIsSubmitting(true);
-    try {
-        await dispatch(register(values));
-        actions.resetForm();
-    } catch (error) {
-        console.error(error);
-    } finally {
-        setIsSubmitting(false);
-    }
-};
+    // Обработка отправки формы
+    const handleSubmit = async (values, actions) => {
+        console.log("Registration payload:", values);
+        setIsSubmitting(true);
+        try {
+            await dispatch(register(values)).unwrap(); // попытка зарегистрировать пользователя
+            actions.resetForm(); // сброс формы при успешной регистрации
+        } catch (error) {
+            console.error(error);
+            // Если произошла ошибка, покажите её пользователю
+            actions.setFieldError("general", "Registration failed. Please try again."); // Устанавливаем общую ошибку
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <Formik
@@ -45,26 +49,39 @@ const handleSubmit = async (values, actions) => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
-            <Form className={css.form}>
-                <div>
-                    <label className={css.label} htmlFor="name">Name</label>
-                    <Field className={css.input} type="text" name="name" />
-                    <ErrorMessage className={css.error} name="name" component="div" />
-                </div>
-                <div>
-                    <label className={css.label} htmlFor="email">Email</label>
-                    <Field className={css.input} type="email" name="email" />
-                    <ErrorMessage className={css.error} name="email" component="div" />
-                </div>
-                <div>
-                    <label className={css.label} htmlFor="password">Password</label>
-                    <Field className={css.input} type="password" name="password" autoComplete="current-password" />
-                    <ErrorMessage className={css.error} name="password" component="div" />
-                </div>
-                <button className={css.button} type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Registering...' : 'Register'}
-                </button>
-            </Form>
+            {({ errors }) => ( // используем errors для отображения общей ошибки
+                <Form className={css.form}>
+                    {/* Общая ошибка */}
+                    {errors.general && <div className={css.error}>{errors.general}</div>}
+
+                    {/* Поле ввода имени */}
+                    <div>
+                        <label className={css.label} htmlFor="name">Name</label>
+                        <Field className={css.input} type="text" name="name" />
+                        <ErrorMessage className={css.error} name="name" component="div" />
+                    </div>
+
+                    {/* Поле ввода email */}
+                    <div>
+                        <label className={css.label} htmlFor="email">Email</label>
+                        <Field className={css.input} type="email" name="email" />
+                        <ErrorMessage className={css.error} name="email" component="div" />
+                    </div>
+
+                    {/* Поле ввода пароля */}
+                    <div>
+                        <label className={css.label} htmlFor="password">Password</label>
+                        <Field className={css.input} type="password" name="password" autoComplete="current-password" />
+                        <ErrorMessage className={css.error} name="password" component="div" />
+                    </div>
+
+                    {/* Кнопка отправки */}
+                    <button className={css.button} type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? 'Registering...' : 'Register'}
+                    </button>
+                </Form>
+            )}
         </Formik>
     );
 }
+

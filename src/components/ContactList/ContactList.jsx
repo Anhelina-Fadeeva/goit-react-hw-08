@@ -5,33 +5,40 @@ import {
   selectContacts,
   selectFilteredContacts,
   selectContactsLoading,
+  selectError // Импортируем селектор для ошибок
 } from '../../redux/contacts/selectors';
+import css from './ContactList.module.css';
 
 const ContactList = () => {
+  // Получаем необходимые данные из состояния Redux
   const searchUsers = useSelector(selectFilteredContacts);
-  const contact = useSelector(selectContacts);
-  const loader = useSelector(selectContactsLoading);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectContactsLoading);
+  const error = useSelector(selectError); // Получаем состояние ошибок
 
   return (
-    <div className='w-full'>
-      {contact.length > 0 ? (
-        <ul className='flex flex-col gap-6 '>
-          {loader && <Loader />}
+    <div className={css.container}>
+      {/* Проверяем наличие ошибок и отображаем их, если они есть */}
+      {error && <p className={css.error}>Error: {error}</p>}
+      
+      {/* Отображаем загрузчик, если данные ещё загружаются */}
+      {isLoading && <Loader />}
+
+      {/* Проверяем наличие контактов и отображаем их, если они есть */}
+      {contacts.length > 0 ? (
+        <ul className={css.contactList}>
           {searchUsers.map(user => (
-            <li
-              className='flex justify-between items-center p-4 w-full h-20 bg-light-blue rounded-xl shadow-custom-blue transition-all duration-300 hover:scale-105'
-              key={user.id}
-            >
-              <Contact user={user} />
+            <li key={user.id} className={css.contactItem}>
+              <Contact contact={user} />
             </li>
           ))}
         </ul>
       ) : (
-        <p className='font-bold text-center text-light-blue text-3xl'>
-          Please Add contact
-        </p>
+        // Если контактов нет, показываем сообщение
+        <p className={css.noContacts}>Please add a contact</p>
       )}
     </div>
   );
 };
+
 export default ContactList;

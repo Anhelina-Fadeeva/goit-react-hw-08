@@ -1,5 +1,6 @@
 import React from 'react';
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
+import styles from './RegistrationPage.module.css';
 
 const RegistrationPage = () => {
     const handleRegistrationSubmit = (values) => {
@@ -7,13 +8,10 @@ const RegistrationPage = () => {
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <RegistrationForm onSubmit={handleRegistrationSubmit} />
-        </>
+        </div>
     );
-};
-
-RegistrationPage.propTypes = {
 };
 
 export default RegistrationPage;
