@@ -50,12 +50,12 @@ const authSlice = createSlice({
       })
 
       .addMatcher(
-        isAnyOf(register.rejected, logIn.rejected),
-        (state, action) => {
-          state.isLoading = false;
-          state.isError = action.payload;
-        }
-      );
+  isAnyOf(register.rejected, logIn.rejected),
+  (state, action) => {
+    state.isLoading = false;
+    state.isError = action.payload;
+  }
+);
   },
 });
 

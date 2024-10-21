@@ -3,57 +3,65 @@ import Button from '@mui/material/Button';
 import Modal from 'react-modal';
 import { setCloseModal } from '../../redux/modal/slice';
 import { deleteContact } from '../../redux/contacts/operations';
-import { selectDeletModal } from '../../redux/modal/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentModalContact } from '../../redux/modal/selectors';
+import { selectDeletModal, selectCurrentModalContact } from '../../redux/modal/selectors';
 import { CgCloseO } from "react-icons/cg";
 import css from './ConfirmationModal.module.css';
 
 const theme = createTheme();
 
 const customStyles = {
-    content: {
-        top: "50%",
-        left: "50%",
-        right: "auto",
-        bottom: "auto",
-        marginRight: "-50%",
-        transform: "translate(-50%, -50%)",
-    },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    padding: "20px",
+    borderRadius: "8px",
+    backgroundColor: "#fffaf0", // мягкий кремовый фон
+  },
 };
 
 Modal.setAppElement("#root");
 
-const ConfirmationModal=()=>{
-    const dispatch = useDispatch();
-    const delModal = useSelector(selectDeletModal);
-    const contact = useSelector(selectCurrentModalContact);
+const ConfirmationModal = () => {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector(selectDeletModal);
+  const contact = useSelector(selectCurrentModalContact);
 
-   
+  const closeModal = () => dispatch(setCloseModal());
 
-    function closeModal() {
-            dispatch(setCloseModal());
-        }
-    
-    function handleDelete() {
-        if (contact) {
-            dispatch(deleteContact(contact.id));
-            dispatch(setCloseModal());
-        }
+  const handleDelete = () => {
+    if (contact) {
+      dispatch(deleteContact(contact.id));
+      dispatch(setCloseModal());
     }
-    return (
+  };
+
+  return (
     <ThemeProvider theme={theme}>
-        <Modal isOpen={delModal} onRequestClose={closeModal} style={customStyles}>
-            <button className={css.btnClose} onClick={closeModal} aria-label="close"><CgCloseO className="my-icon" size="20" color='#d57f34'/></button>
-            {contact ? (<h2>Delete contact {contact.name} ({contact.number}) ?</h2>) :(
-            <h2>Contact not found</h2>)}
-            <div className={css.div}>
-            <Button className={css.btnDelete} onClick={handleDelete} >Delete</Button>
-            <Button className={css.btnCansel} onClick={closeModal}>Cansel</Button>
-            </div>
-        </Modal>
+      <Modal isOpen={isModalOpen} onRequestClose={closeModal} style={customStyles}>
+        <button className={css.btnClose} onClick={closeModal} aria-label="close">
+          <CgCloseO size={20} color="#d57f34" />
+        </button>
+        <h2>
+          {contact 
+            ? `Delete contact ${contact.name} (${contact.number})?` 
+            : "Contact not found"}
+        </h2>
+        <div className={css.buttonGroup}>
+          <Button variant="contained" color="error" onClick={handleDelete} className={css.btnDelete}>
+            Delete
+          </Button>
+          <Button variant="outlined" onClick={closeModal} className={css.btnCancel}>
+            Cancel
+          </Button>
+        </div>
+      </Modal>
     </ThemeProvider>
-);
+  );
 };
 
 export default ConfirmationModal;

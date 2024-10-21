@@ -22,8 +22,9 @@ export const register = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      console.error("Registration error:", error); // Добавьте эту строку
-      return thunkApi.rejectWithValue(error.message);
+      const errorMessage = error.response ? error.response.data.message : error.message;
+      console.error("Registration error:", errorMessage);
+      return thunkApi.rejectWithValue(errorMessage);
     }
   }
 );

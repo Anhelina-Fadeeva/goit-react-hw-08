@@ -1,0 +1,81 @@
+/* App.module.css */
+.container {
+    background-color: #f5f5dc;
+    /* светлый бежевый фон */
+    color: #4b3621;
+    /* тёмно-коричневый текст */
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стили для текста при обновлении пользователя */
+.refresh-message {
+    color: #a67c00;
+    /* тёплый жёлтый оттенок */
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Layout.module.css - базовые стили для Layout компонента */
+.layout {
+    background-color: #fffaf0;
+    /* кремовый белый фон */
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(75, 54, 33, 0.2);
+    /* лёгкая тень */
+    border-radius: 10px;
+}
+
+/* Стили для кнопок и других интерактивных элементов */
+.button {
+    background-color: #d2b48c;
+    /* светло-коричневый оттенок */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #b8860b;
+    /* более тёмный жёлтый оттенок */
+}
+
+/* Стили для страниц */
+.page {
+    background-color: #fffaf0;
+    /* тот же кремовый белый для страниц */
+    color: #4b3621;
+    /* тёмно-коричневый */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Стиль для заголовков */
+h1,
+h2,
+h3 {
+    color: #8b4513;
+    /* насыщенный коричневый */
+}
+
+/* Стили для ссылок */
+a {
+    color: #d2691e;
+    /* оттенок коричневого */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #b8860b;
+    /* жёлтый оттенок при наведении */
+}

@@ -1,34 +1,37 @@
-import { useDispatch, useSelector } from "react-redux";
-import { selectFilteredContacts } from "../../redux/contacts/selectors";
-import Contact from "../Contact/Contact";
-import css from './ContactList.module.css'
-import { setOpenModal, setCurrentContact } from "../../redux/modal/slice";
-import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import Contact from '../Contact/Contact';
+import { useSelector } from 'react-redux';
+import Loader from '../Loader/Loader';
+import {
+  selectContacts,
+  selectFilteredContacts,
+  selectContactsLoading,
+} from '../../redux/contacts/selectors';
 
+const ContactList = () => {
+  const searchUsers = useSelector(selectFilteredContacts);
+  const contact = useSelector(selectContacts);
+  const loader = useSelector(selectContactsLoading);
 
-export default function ContactList() {
-    const dispatch = useDispatch();
-    const contacts = useSelector(selectFilteredContacts);
-
-    const handleDelete = (contact) => {
-        dispatch(setOpenModal(true));
-        dispatch(setCurrentContact(contact))
-    };
-    
-    return (
-        <>
-        <ul className={css.ul}>
-            
-            {contacts.map((item) => (
-                <li className={css.li} key={item.id}>
-                    <Contact contact={item} onDelet={()=> handleDelete(item)} />
-                </li>
-                
-            ))}
+  return (
+    <div className='w-full'>
+      {contact.length > 0 ? (
+        <ul className='flex flex-col gap-6 '>
+          {loader && <Loader />}
+          {searchUsers.map(user => (
+            <li
+              className='flex justify-between items-center p-4 w-full h-20 bg-light-blue rounded-xl shadow-custom-blue transition-all duration-300 hover:scale-105'
+              key={user.id}
+            >
+              <Contact user={user} />
+            </li>
+          ))}
         </ul>
-            <ConfirmationModal />
-         </>
-    );
-
-    
-}
+      ) : (
+        <p className='font-bold text-center text-light-blue text-3xl'>
+          Please Add contact
+        </p>
+      )}
+    </div>
+  );
+};
+export default ContactList;

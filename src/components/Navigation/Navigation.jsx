@@ -7,14 +7,17 @@ import clsx from 'clsx';
 export default function Navigation() {
     const isLoggedIn = useSelector(selectIsLoggedIn);
 
-    const buildLinkClass = ({ isActive }) => {
-        return clsx(css.link, isActive && css.active);
-    };
+    const buildLinkClass = ({ isActive }) => clsx(css.link, isActive && css.active);
+
     return (
-        <nav>
-            <NavLink  to="/" className={buildLinkClass}>Home</NavLink>
+        <nav className={css.nav}>
+            <NavLink to="/" className={buildLinkClass} aria-current="page">
+                Home
+            </NavLink>
             {isLoggedIn && (
-            <NavLink  to="/contacts" className={buildLinkClass}>Contacts</NavLink>
+                <NavLink to="/contacts" className={buildLinkClass} aria-current="page">
+                    Contacts
+                </NavLink>
             )}
         </nav>
     );

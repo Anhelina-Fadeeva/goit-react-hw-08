@@ -1,19 +1,24 @@
-/* AppBar.css */
-.app-bar {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #f5f5dc;
+    /* светлый бежевый */
     padding: 10px 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(75, 54, 33, 0.1);
+    /* лёгкая тень */
+    border-bottom: 2px solid #d2b48c;
+    /* светло-коричневая линия */
 }
 
-.navigation {
-    display: flex;
-    gap: 15px;
+.header a {
+    color: #4b3621;
+    /* тёмно-коричневый текст */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.auth-nav {
-    display: flex;
-    gap: 10px;
+.header a:hover {
+    color: #b8860b;
+    /* жёлтый оттенок при наведении */
 }

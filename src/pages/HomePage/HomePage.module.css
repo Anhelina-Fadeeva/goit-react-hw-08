@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f5f0e1;
+    /* Бежевый фон */
+}
+
+.title {
+    font-size: 3rem;
+    color: #5c4b31;
+    /* Темно-коричневый */
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.25rem;
+    color: #3d2f21;
+    /* Коричневый */
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.5;
+    background-color: #f9f6f1;
+    /* Молочный */
+    padding: 20px;
+    border: 1px solid #c4b79e;
+    /* Кремовая граница */
+    border-radius: 8px;
+}

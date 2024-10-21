@@ -10,21 +10,20 @@ import { fetchContacts } from "../../redux/contacts/operations";
 export default function ContactPage() {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(selectIsLoggedIn);
-    const isLoadingContacts = useSelector(selectContactsLoading);
+    const isLoading = useSelector(selectContactsLoading);
 
     useEffect(() => {
         if (isLoggedIn) {
             dispatch(fetchContacts());
         }
     }, [dispatch, isLoggedIn]);
-    
+
     return (
         <>
             <ContactForm />
-            <SearchBox />  
+            <SearchBox />
             <ContactList />
-        <div>{isLoadingContacts && <div>Request in progress...</div>}
-            </div>
+            {isLoading && <div className="loading">Request in progress...</div>}
         </>
     );
-};
+}

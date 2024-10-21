@@ -1,47 +1,57 @@
-.contactContainer {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border: 1px solid #d2b48c;
+    /* светло-коричневая рамка */
+    border-radius: 8px;
+    background-color: #fffaf0;
+    /* мягкий кремовый фон */
     margin-bottom: 10px;
-    background-color: #f9f9f9;
     transition: background-color 0.3s ease;
 }
 
-.contactContainer:hover {
-    background-color: #f1f1f1;
+.container:hover {
+    background-color: #f5deb3;
+    /* светло-бежевый при наведении */
 }
 
-.contactInfo {
+.item {
     display: flex;
     flex-direction: column;
 }
 
-.contactName {
-    font-weight: bold;
-    font-size: 16px;
-    color: #333;
-    margin: 0;
+.element {
+    color: #4b3621;
+    /* тёмно-коричневый текст */
+    font-size: 1em;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
 }
 
-.contactPhone {
-    font-size: 14px;
-    color: #555;
-    margin: 0;
+.element svg {
+    margin-right: 5px;
 }
 
-.deleteButton {
-    background-color: #e74c3c;
-    color: #fff;
+.btn {
+    background-color: #d57f34;
+    /* оранжево-коричневый оттенок */
+    color: white;
     border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
+    border-radius: 5px;
+    padding: 6px 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.deleteButton:hover {
-    background-color: #c0392b;
+.btn:hover {
+    background-color: #b86b2f;
+    /* темнее при наведении */
+}
+
+.btn:active {
+    transform: scale(0.95);
+    /* небольшое уменьшение при нажатии */
 }

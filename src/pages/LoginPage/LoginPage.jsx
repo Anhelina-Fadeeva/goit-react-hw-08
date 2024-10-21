@@ -1,12 +1,22 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import LoginForm from "../../components/LoginForm/LoginForm";
 
-export default function LoginPage() {
-    const handleLogin = (values) => {
-        console.log('Login data: ', values)
+const LoginPage = () => {
+    const handleLoginSubmit = (values) => {
+        console.log('Login data: ', values);
     };
+
     return (
-        <div>
-            <LoginForm onSubmit={handleLogin} />
-        </div>
+        <>
+            <LoginForm onSubmit={handleLoginSubmit} />
+        </>
     );
-}
+};
+
+// Можно добавить PropTypes, если вы используете их в своем проекте
+LoginPage.propTypes = {
+    // Здесь можно указать пропсы, если нужно
+};
+
+export default LoginPage;

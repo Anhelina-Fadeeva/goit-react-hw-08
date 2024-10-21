@@ -1,70 +1,68 @@
-/* LoginForm.module.css */
 .form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%;
     max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.title {
-    text-align: center;
-    font-size: 1.5em;
-    color: #333;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f5f0e1;
+    /* Бежевый */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    color: #333;
-}
-
-.text {
-    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #5c4b31;
+    /* Темно-коричневый */
 }
 
 .input {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    margin-top: 8px;
+    border: 1px solid #c4b79e;
+    /* Кремовый оттенок */
     border-radius: 5px;
-    font-size: 1em;
-    transition: border-color 0.3s;
+    font-size: 1rem;
+    color: #3d2f21;
+    /* Коричневый */
+    background-color: #f9f6f1;
+    /* Молочный */
 }
 
 .input:focus {
-    border-color: #007bff;
     outline: none;
+    border-color: #d6b285;
+    /* Бежевый акцент */
+    box-shadow: 0 0 4px rgba(214, 178, 133, 0.6);
 }
 
 .error {
-    color: #ff4d4d;
-    font-size: 0.85em;
     margin-top: 5px;
+    color: #b33a3a;
+    /* Красный для ошибок */
+    font-size: 0.875rem;
 }
 
 .button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
+    padding: 10px;
+    background-color: #8b704f;
+    /* Темно-бежевый */
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #0056b3;
+    transition: background-color 0.3s ease;
 }
 
 .button:disabled {
-    background-color: #cccccc;
+    background-color: #d6b285;
+    /* Более светлый оттенок для disabled */
     cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+    background-color: #7a5e41;
+    /* Темнее при наведении */
 }

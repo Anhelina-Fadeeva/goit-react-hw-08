@@ -1,12 +1,19 @@
+import React from 'react';
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 
-export default function RegistrationPage() {
-    const handleRegister = (values) => {
-        console.log('Registration data: ', values)
-    }
+const RegistrationPage = () => {
+    const handleRegistrationSubmit = (values) => {
+        console.log('Registration data: ', values);
+    };
+
     return (
-        <div>
-            <RegistrationForm onSubmit={handleRegister} />
-        </div>
-    )
-}
+        <>
+            <RegistrationForm onSubmit={handleRegistrationSubmit} />
+        </>
+    );
+};
+
+RegistrationPage.propTypes = {
+};
+
+export default RegistrationPage;
